@@ -1,17 +1,22 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 
-import Layout from "./components/Layout";
+import Layout from "./layouts/Layout";
+import AuthLayout from "./layouts/AuthLayout";
+import DashLayout from "./layouts/DashLayout";
 
 import HomePage from "./pages/AuthPages/landingPages/HomePage";
 import AboutPage from "./pages/AuthPages/landingPages/AboutPage";
 import ArticleListPage from "./pages/AuthPages/landingPages/ArticleListPage";
 import ArticlePage from "./pages/AuthPages/landingPages/ArticlePage";
 
-import AuthLayout from "./layouts/AuthLayout";
-import SignInPage from "./pages/AuthPages/SignInPage";
-import SignUpPage from "./pages/AuthPages/SignUpPage";
+import SignInPage from "./pages/AuthPages/SignInPage.jsx";
+import SignUpPage from "./pages/AuthPages/SignUpPage.jsx";
 
-import NotFoundPage from "./pages/NotFoundPage";
+import DashboardPage from "./pages/DashboardPages/DashboardPage.jsx";
+import ReportsPage from "./pages/DashboardPages/ReportsPage.jsx";
+import UsersPage from "./pages/DashboardPages/UserPage.jsx";
+
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +39,22 @@ const router = createBrowserRouter([
       { path: "signup", element: <SignUpPage /> },
     ],
   },
+  // App.jsx
+{
+  path: "/dashboard",
+  element: <DashLayout />,
+  children: [
+    { index: true, element: <DashboardPage /> },
+    { path: "reports", element: <ReportsPage /> },
+    { path: "users", element: <UsersPage /> },
+  ],
+},
+  {
+    path: "*",
+    element: <Navigate to="/" replace />,
+  },
 ]);
 
-function App() {
+export default function App() {
   return <RouterProvider router={router} />;
 }
-
-export default App;

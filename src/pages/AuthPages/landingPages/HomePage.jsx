@@ -1,5 +1,6 @@
 import Button from "../../../components/Button";
 
+
 function HomePage() {
   const stats = [
     { label: 'Projects', value: '12+' },
