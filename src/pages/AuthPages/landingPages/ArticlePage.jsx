@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import articles from "../../../assets/article-content";
+import articles from "../../../data/article-content";
 
 function ArticlePage() {
   const { name } = useParams()
